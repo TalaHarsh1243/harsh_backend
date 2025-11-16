@@ -1,1 +1,13 @@
 
+const express = require("express");
+const router = express.Router();
+const user = require("../controllers/usercontroller");
+const auth = require("../middleware/auth");
+
+router.post("/register", user.register);
+router.post("/login", user.login);
+
+router.get("/users", auth, user.listUsers);
+router.get("/users/:id", auth, user.userDetails);
+
+module.exports = router;
